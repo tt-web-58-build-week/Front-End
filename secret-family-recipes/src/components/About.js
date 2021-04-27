@@ -8,12 +8,10 @@ const StyledAbout = styled.section`
   padding-top: 1rem;
 
   h2 {
-    font-family: 'Antonio', sans-serif;
-    font-weight: 700;
+    font-size: 3rem;
   }
 
   button {
-    font-family: 'Montserrat', sans-serif;
     color: white;
     height: 50px;
     width: 100px;
