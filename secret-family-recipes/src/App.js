@@ -3,6 +3,7 @@ import About from "./components/About";
 import Company from "./components/Company";
 import Recipe from "./components/Recipe";
 import Nav from "./components/NavBar";
+import {Route, Switch, Link} from "react-router-dom";
 import axios from "axios";
 
 
@@ -55,8 +56,9 @@ function App() {
   // .catch(error=>{
   //   console.log("Something went wrong");
   // })
-  
+
   return (
+
     <section>
       <div>
         <Company/>
@@ -64,16 +66,17 @@ function App() {
       <div>
         <Nav/>
         <About/>
-        <section>
+        {/* <section>
             <h2>Some of our favorite recipes</h2>
             {
               ourFavoriteRecipes.map(recipe=>{
                 return <Recipe key={recipe.recipeid} recipe={recipe}/>
               })
             }
-        </section>
+        </section> */}
       </div>
     </section>
+    
   );
 }
 
