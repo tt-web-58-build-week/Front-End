@@ -12,7 +12,7 @@ const Company = (prop)=>{
                 generation after generation of tradition
             </h1>
             <ul class="icons">
-                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><i class="fab fa-twitter"></i></li>
                 <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
                 <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
                 <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
