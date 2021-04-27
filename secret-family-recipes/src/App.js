@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import About from "./components/About";
 import Company from "./components/Company";
 import Recipe from "./components/Recipe";
@@ -20,11 +20,11 @@ function App() {
     <section>
       <div>
         <button onClick={()=> setLoginModalIsOpen(true)}>Open Login</button>
-        <LoginModal modalIsOpen={loginModalIsOpen} setModalIsOpen={setLoginModalIsOpen}/>
+        <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen }/>
         <button onClick={()=> setSignUpModalIsOpen(true)}>Open Sign Up</button>
-        <SignUpModal modalIsOpen={signUpModalIsOpen} setModalIsOpen={setSignUpModalIsOpen}/>
+        <SignUpModal modalIsOpen={ signUpModalIsOpen } setModalIsOpen={ setSignUpModalIsOpen }/>
         <button onClick={()=> setRecipeModalIsOpen(true)}>Open Recipes</button>
-        <RecipeModal modalIsOpen={recipeModalIsOpen} setModalIsOpen={setRecipeModalIsOpen}/>
+        <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen }/>
       </div>
       <div>
         <Company/>
