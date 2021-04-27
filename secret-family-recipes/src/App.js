@@ -26,11 +26,3 @@ function App() {
 }
 
 export default App;
-
-
-  // return (
-  //   <div className="App">
-  //     <button onClick={()=> setModalIsOpen(true)}>Open Modal</button>
-  //     <LoginModal modalIsOpen={modalIsOpen}/>
-  //   </div>
-  // );

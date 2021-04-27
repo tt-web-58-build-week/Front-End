@@ -8,9 +8,9 @@ export default function RecipeModal(props) {
 
     const onChange = event => {
         const {name, value } = event.target
-        setFormValues({...formValues, [name]: value}) 
+        setFormValues({...formValues, [name]: value})
     }
-    
+
     const onSubmit = event => {
         event.preventDefault();
         setModalIsOpen(false)
@@ -19,8 +19,9 @@ export default function RecipeModal(props) {
     const addIngredient = event => {
         event.preventDefault();
         const ingredients = document.querySelector('#ingredients')
-        const newIngredient = document.createElement('input')
-        ingredients.appendChild(newIngredient)
+        const newIngredient = React.createElement('input', [],[])
+        console.log(newIngredient)
+        // ingredients.appendChild(newIngredient)
     }
 
     return (
@@ -80,6 +81,7 @@ export default function RecipeModal(props) {
                     onChange={onChange}
                 />
                 </div>
+
                 <div>
                     <label>Category: </label>
                     <input 
