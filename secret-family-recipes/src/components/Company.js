@@ -11,21 +11,12 @@ const Company = (prop)=>{
                 <br></br>
                 generation after generation of tradition
             </h1>
-            <ul>
-                {/* ########################icon css is incomplete############################# */}
-                <li>
-                    <a href='#' className="icon brands fa-twitter"></a>
-                </li>
-                <li>
-                    <a href='#' className="icon brands fa-github"></a>
-                </li>
-                <li>
-                    <a href='#' className="icon brands fa-dribble"></a>
-                </li>
-                <li>
-                    <a href='#' className="icon brands fa-envelope"></a>
-                </li>
-            </ul>
+            <ul class="icons">
+                <li><i class="fab fa-twitter"></i></li>
+                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
         </div>
     )
 }
