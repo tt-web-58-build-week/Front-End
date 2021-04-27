@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { ThemeProvider } from 'styled-components';
-import theme from './theme/index';
-
+import theme from './theme/index'; 
+//
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <App />
