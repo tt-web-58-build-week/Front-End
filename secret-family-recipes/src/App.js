@@ -1,65 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import About from "./components/About";
 import Company from "./components/Company";
 import Recipe from "./components/Recipe";
 import Nav from "./components/NavBar";
-import {Route, Switch, Link} from "react-router-dom";
-import axios from "axios";
+import LoginModal from './components/LoginModal'
+import SignUpModal from './components/SignUpModal'
+import RecipeModal from './components/RecipeModal'
+import Modal from 'react-modal'
+import './App.css'
+import 'react-fontawesome'
 
-
-const MOCK_DATA = [
-  {
-      recipeid: 1,
-      source: 'example',
-      title: 'Recipe1',
-      categories: [{categoryid: 1, name: 'example1'}, {categoryid: 2, name: 'example2'}],
-      ingredients: [{ingredientid: 1, ingredientname: 'example1'}, {ingredientid: 2, ingredientname: 'example2'}, {ingredientid: 3, ingredientname: 'example3'}, {ingredientid: 4, ingredientname: 'example4'}],
-      instructions: [{instructionsid: 1, instructionDetails: 'sample instructions 1'}, {instructionsid: 2, instructionDetails: 'sample instructions 2'}],
-      user: {email: 'jeff@jeff.jeff', password: '1234', passwordNoEncrypt: '1234', userid: 1, username: 'jeff'}
-  },
-  {
-      recipeid: 2,
-      source: 'example',
-      title: 'Recipe2',
-      categories: [{categoryid: 1, name: 'example1'}, {categoryid: 2, name: 'example2'}],
-      ingredients: [{ingredientid: 1, ingredientname: 'example1'}, {ingredientid: 2, ingredientname: 'example2'}, {ingredientid: 3, ingredientname: 'example3'}, {ingredientid: 4, ingredientname: 'example4'}],
-      instructions: [{instructionsid: 1, instructionDetails: 'sample instructions 1'}, {instructionsid: 2, instructionDetails: 'sample instructions 2'}],
-      user: {email: 'jeff@jeff.jeff', password: '1234', passwordNoEncrypt: '1234', userid: 1, username: 'jeff'}
-  },
-  {
-      recipeid: 3,
-      source: 'example',
-      title: 'Recipe3',
-      categories: [{categoryid: 1, name: 'example1'}, {categoryid: 2, name: 'example2'}],
-      ingredients: [{ingredientid: 1, ingredientname: 'example1'}, {ingredientid: 2, ingredientname: 'example2'}, {ingredientid: 3, ingredientname: 'example3'}, {ingredientid: 4, ingredientname: 'example4'}],
-      instructions: [{instructionsid: 1, instructionDetails: 'sample instructions 1'}, {instructionsid: 2, instructionDetails: 'sample instructions 2'}],
-      user: {email: 'jeff@jeff.jeff', password: '1234', passwordNoEncrypt: '1234', userid: 1, username: 'jeff'}
-  },
-  {
-      recipeid: 4,
-      source: 'example',
-      title: 'Recipe4',
-      categories: [{categoryid: 1, name: 'example1'}, {categoryid: 2, name: 'example2'}],
-      ingredients: [{ingredientid: 1, ingredientname: 'example1'}, {ingredientid: 2, ingredientname: 'example2'}, {ingredientid: 3, ingredientname: 'example3'}, {ingredientid: 4, ingredientname: 'example4'}],
-      instructions: [{instructionsid: 1, instructionDetails: 'sample instructions 1'}, {instructionsid: 2, instructionDetails: 'sample instructions 2'}],
-      user: {email: 'jeff@jeff.jeff', password: '1234', passwordNoEncrypt: '1234', userid: 1, username: 'jeff'}
-  }
-];
+Modal.setAppElement('#root')
 
 function App() {
-  const [ourFavoriteRecipes, setOurFavoriteRecipes] = useState(MOCK_DATA);
-
-  // axios.get(url)
-  // .then(res=>{
-  //   setOurFavoriteRecipes(res.data);
-  // })
-  // .catch(error=>{
-  //   console.log("Something went wrong");
-  // })
-
+  const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
+  const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
+  const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
   return (
 
     <section>
+      <div>
+        <button onClick={()=> setLoginModalIsOpen(true)}>Open Login</button>
+        <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen }/>
+        <button onClick={()=> setSignUpModalIsOpen(true)}>Open Sign Up</button>
+        <SignUpModal modalIsOpen={ signUpModalIsOpen } setModalIsOpen={ setSignUpModalIsOpen }/>
+        <button onClick={()=> setRecipeModalIsOpen(true)}>Open Recipes</button>
+        <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen }/>
+      </div>
       <div>
         <Company/>
       </div>

@@ -1,0 +1,10 @@
+.modal form div label {
+    /* color: blue; */
+    width: 90px;
+    display: inline-block;
+}
+
+#submit-button {
+    margin: 30px auto;
+    display: block;
+}
