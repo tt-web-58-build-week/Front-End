@@ -5,9 +5,22 @@ import axios from "axios"
 
 export default function LoginModal(props) {
     const {modalIsOpen, setModalIsOpen} = props
-    const [formValues, setFormValues] = useState({})
+    const [formValues, setFormValues] = useState({
+        username: "",
+        password: ""
+    });
 
-    const apiURL = "https://tt-web58-recipe-app.herokuapp.com/swagger-ui.html"
+    const login = (e) => {
+        e.preventDefault();
+        axios
+            .post("https://tt-web58-recipe-app.herokuapp.com/swagger-ui.html", )
+            .then((res) => {
+                console.log(res.data);
+                localStorage.setItem(token, res.data.---);
+                props.history.push("/userinfo");
+            });
+    }
+
 
     const onChange = event => {
         const {name, value} = event.target
