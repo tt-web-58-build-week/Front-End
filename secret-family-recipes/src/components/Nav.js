@@ -1,17 +1,15 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
-const NavBar = (prop)=>{
+const Nav = (prop)=>{
     return(
         <nav>
             <input
             placeholder="Search"
             />
             {/* prevent default and pop out the login menu for these anchor tag */}
-            <Link to="/user">
-                <a href="#">Login</a>
-            </Link>
+            <Link to="/user">Login</Link>
 
             <a href="#">Sign Up</a>
         </nav>
@@ -19,4 +17,4 @@ const NavBar = (prop)=>{
 }
 
 
-export default NavBar;
+export default Nav;

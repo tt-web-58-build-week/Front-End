@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import About from "./components/About";
-import Company from "./components/Company";
 import Recipe from "./components/Recipe";
-import Nav from "./components/NavBar";
+import Nav from "./components/Nav";
 import {Route, Switch, Link, Router} from "react-router-dom";
-import User from "./components/User"
+import User from "./components/User";
+import Home from "./components/Home";
 import axios from "axios";
 
 
@@ -23,21 +23,9 @@ function App() {
 
   return (
     <Switch>
-
-      <Route path="/user">
-        <User/>
-      </Route>
-      <Route path="/">
-        <section>
-          <div>
-            <Company/>
-          </div>
-          <div>
-            <Nav/>
-            <About/>
-          </div>
-        </section>
-      </Route>
+      <Route path="/" exact component={Home}/>
+      <Route path="/user" component={User}/>
+      <Route path="/about" component={About}/>
     </Switch>
 
     
