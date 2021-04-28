@@ -17,6 +17,7 @@ const StyledHero = styled.section`
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
+    
 
     @media (max-width: 768px) {
         height: 50vh;

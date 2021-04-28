@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import Hero from './Hero';
 import styled from 'styled-components';
+import ModalTest from './ModalTest'
 
 const StyledHome = styled.div`
     display: flex;
@@ -16,6 +17,7 @@ export default function Home(){
         <StyledHome>
             <Hero />
             <Nav />
+            <ModalTest/>
         </StyledHome>
     )
 }
