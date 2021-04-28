@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
-import { MOCK_DATA } from '../mockData/mockData';
-
+import { Link } from "react-router-dom";
 
 
 const StyledProfile = styled.nav`
@@ -70,8 +69,9 @@ const RecipesDiv = styled.section`
         width:75%;
     }
 `
-const User = (prop)=>{
+const User = (props)=>{
     {/* SPLIT INTO COMPONENTS!!! */}
+    const { data } = props;
     return(
         <div>
             <StyledProfile>
@@ -80,8 +80,8 @@ const User = (prop)=>{
                     <h1>Jason</h1>
                 </div>
                 <div className="btns">
-                    <button className="addBtn">Add Recipe</button>
-                    <button className="logOut">Log Out</button>
+                    <Link to="/"><button className="addBtn">Log Out</button></Link>
+                    <button className="logOut">Add Recipe</button>
                 </div>
 
             </StyledProfile>
@@ -90,7 +90,7 @@ const User = (prop)=>{
                 <h2>Recipes</h2>
                 <input placeholder="Search"/>
                 { 
-                    MOCK_DATA.map(recipe=>{
+                    data.map(recipe=>{
                     return <Recipe key={recipe.recipeid} recipe={recipe}/>
                   })
                 }
