@@ -18,7 +18,7 @@ const StyledAbout = styled.section`
     width: 100px;
     margin: 20px 0;
     border-radius: 0;
-    background-color: ${pr => pr.theme.yellow};
+    background-color: ${pr => pr.theme.green};
     border: none;
     padding: 0;
     cursor: pointer;
@@ -50,7 +50,7 @@ const About = (prop)=>{
             
             <ul>
                 <li>
-                    <button><Link to="/">Learn More</Link></button>
+                <Link to="/"><button>Back</button></Link>
                 </li>
             </ul>
         </StyledAbout>

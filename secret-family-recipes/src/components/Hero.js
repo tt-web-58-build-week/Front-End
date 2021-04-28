@@ -11,7 +11,18 @@ const StyledHero = styled.section`
     position: relative;
     margin: 0 auto;
     width: 100%;
+    height: 100vh;
     padding: 3rem;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+        height: 50vh;
+        flex-direction: column;
+        align-items: center;
+      }
 
     h1 {
     font-size: 3rem;
@@ -19,6 +30,25 @@ const StyledHero = styled.section`
     div {
         background-color: white;
         padding: 1rem;
+        width: 80%;
+    }
+
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        width: 80%;
+        list-style-type: none;
+      }
+    
+    li {
+        margin-left: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: ${pr => pr.theme.green};
+            transition: all .25s ease-in;
+            text-shadow: 0px 0px 10px rgba(100,100,100,0.5);
+        }
     }
 
     div button {
@@ -27,7 +57,7 @@ const StyledHero = styled.section`
     width: 100px;
     margin: 20px 0;
     border-radius: 0;
-    background-color: ${pr => pr.theme.yellow};
+    background-color: ${pr => pr.theme.green};
     border: none;
     padding: 0;
     cursor: pointer;
@@ -43,12 +73,12 @@ const StyledHero = styled.section`
 
 const Hero = (prop) => {
     return (
-        <StyledHero> {/*Background img here*/}
-            <ul class="icons">
-                <li><i class="fab fa-twitter"></i></li>
-                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-                <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        <StyledHero>
+            <ul>
+                <li>Twitter</li>
+                <li>GitHub</li>
+                <li>Dribbble</li>
+                <li>Email</li>
             </ul>
             <div>
                 <h1>We are us!</h1>
