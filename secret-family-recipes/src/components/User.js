@@ -70,7 +70,7 @@ const RecipesDiv = styled.section`
     }
 `
 const User = (props)=>{
-    {/* SPLIT INTO COMPONENTS!!! */}
+    // {/* SPLIT INTO COMPONENTS!!! */}
     const { data } = props;
     return(
         <div>
