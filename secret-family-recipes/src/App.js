@@ -22,7 +22,7 @@ function App() {
 
   return (
     <Switch>
-      <Route path="/" exact component={Home}/>
+      <Route exact path="/" component={Home}/>
       <Route 
         path="/user" 
         render={props => (

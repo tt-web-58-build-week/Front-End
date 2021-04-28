@@ -83,7 +83,6 @@ const User = (props)=>{
                     <Link to="/"><button className="addBtn">Log Out</button></Link>
                     <button className="logOut">Add Recipe</button>
                 </div>
-
             </StyledProfile>
             {/* Make conditional (&&) */}
             <RecipesDiv>
