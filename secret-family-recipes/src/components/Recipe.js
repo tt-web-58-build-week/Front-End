@@ -3,10 +3,11 @@ import React from "react";
 
 const Recipe = (prop)=>{
     const {recipe} = prop;
+
     return (
         <article>
             <a>
-                <img src="https://via.placeholder.com/250"></img>
+                <img src="https://via.placeholder.com/300"></img>
             </a>
             <h3>{`${recipe.title} from ${recipe.source}`}</h3>
             <p>Ingredients: {recipe.ingredients.map(ingredient=>{
