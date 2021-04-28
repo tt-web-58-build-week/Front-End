@@ -41,7 +41,7 @@ const StyledHero = styled.section`
 `
 
 
-export default function Hero(prop){
+const Hero = (prop) => {
     return (
         <StyledHero> {/*Background img here*/}
             <ul class="icons">
@@ -60,3 +60,4 @@ export default function Hero(prop){
 }
 
 
+export default Hero; 

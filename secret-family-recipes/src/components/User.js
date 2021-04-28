@@ -42,12 +42,28 @@ const MOCK_DATA = [
   ];
 
 
-const HeaderDiv = styled.div`
+const StyledProfile = styled.nav`
 
     display:flex;
     align-items:center;
     justify-content:space-evenly;
     margin:1.5rem 1rem 1rem 2rem;
+
+    .userImg {
+        background-image: url("https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+    }
+    .user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     button{
         border:solid 2px silver;
@@ -67,7 +83,7 @@ const HeaderDiv = styled.div`
 
         img{
             width:25%;
-            border-radius:50%;
+            border-radius:100%;
         }
         h1{
             font-size:3.5rem;
@@ -77,7 +93,7 @@ const HeaderDiv = styled.div`
 
     }
 `
-const RecipesDiv = styled.div`
+const RecipesDiv = styled.section`
     display:flex;
     flex-flow:row wrap;
     justify-content:center;
@@ -92,18 +108,21 @@ const RecipesDiv = styled.div`
     }
 `
 const User = (prop)=>{
+    {/* SPLIT INTO COMPONENTS!!! */}
     return(
         <div>
-            <HeaderDiv>
-                <img src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
-                </img>
-                <h1>Jason</h1>
+            <StyledProfile>
+                <div className="user">
+                    <div className="userImg"></div>
+                    <h1>Jason</h1>
+                </div>
                 <div className="btns">
                     <button className="addBtn">Add Recipe</button>
                     <button className="logOut">Log Out</button>
                 </div>
 
-            </HeaderDiv>
+            </StyledProfile>
+            {/* Make conditional (&&) */}
             <RecipesDiv>
                 <h2>Recipes</h2>
                 <input placeholder="Search"/>

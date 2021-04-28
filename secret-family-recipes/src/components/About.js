@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledAbout = styled.section`
   background-color: white;
@@ -49,7 +50,7 @@ const About = (prop)=>{
             
             <ul>
                 <li>
-                    <button><a href="#">Learn More</a></button>
+                    <button><Link to="/">Learn More</Link></button>
                 </li>
             </ul>
         </StyledAbout>
