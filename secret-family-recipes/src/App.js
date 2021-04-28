@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import About from "./components/About";
-import Company from "./components/Company";
-import Recipe from "./components/Recipe";
-import Nav from "./components/NavBar";
-import {Route, Switch, Link, Router} from "react-router-dom";
-import User from "./components/User"
+import { Route, Switch } from "react-router-dom";
+import User from "./components/User";
+import Home from "./components/Home";
+import { MOCK_DATA as data} from './mockData/mockData';
 import axios from "axios";
 
 
@@ -23,21 +22,14 @@ function App() {
 
   return (
     <Switch>
-
-      <Route path="/user">
-        <User/>
-      </Route>
-      <Route path="/">
-        <section>
-          <div>
-            <Company/>
-          </div>
-          <div>
-            <Nav/>
-            <About/>
-          </div>
-        </section>
-      </Route>
+      <Route path="/" exact component={Home}/>
+      <Route 
+        path="/user" 
+        render={props => (
+          <User {...props} data={data}/>
+        )}
+      />
+      <Route path="/about" component={About}/>
     </Switch>
 
     
