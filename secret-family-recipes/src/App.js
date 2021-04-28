@@ -7,8 +7,8 @@ import LoginModal from './components/LoginModal'
 import SignUpModal from './components/SignUpModal'
 import RecipeModal from './components/RecipeModal'
 import Modal from 'react-modal'
+import './components/Modal.css'
 import './App.css'
-import 'react-fontawesome'
 
 Modal.setAppElement('#root')
 

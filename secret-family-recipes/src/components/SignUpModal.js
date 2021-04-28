@@ -41,10 +41,9 @@ export default function SignUpModal(props) {
                 content: {
                     margin: 'auto',
                     color: 'orange',
-                    minWidth: '20em',
-                    width: '30%',
+                    maxWidth: '22em',
                     minHeight: '15%',
-                    height: '20%',
+                    maxHeight: '40%',
                 }
             }
         }
