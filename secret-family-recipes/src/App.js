@@ -9,7 +9,20 @@ import RecipeModal from './components/RecipeModal'
 import Modal from 'react-modal'
 import './App.css'
 import 'react-fontawesome'
+import { Route, Switch } from "react-router-dom";
+import User from "./components/User";
+import Home from "./components/Home";
+import { MOCK_DATA as data} from './mockData/mockData';
+import axios from "axios";
+  // const [ourFavoriteRecipes, setOurFavoriteRecipes] = useState(MOCK_DATA);
 
+  // axios.get(url)
+  // .then(res=>{
+  //   setOurFavoriteRecipes(res.data);
+  // })
+  // .catch(error=>{
+  //   console.log("Something went wrong");
+  // })
 Modal.setAppElement('#root')
 
 function App() {
@@ -17,8 +30,8 @@ function App() {
   const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
   const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
   return (
-
-    <section>
+    <Switch>
+       <section>
       <div>
         <button onClick={()=> setLoginModalIsOpen(true)}>Open Login</button>
         <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen }/>
@@ -43,6 +56,8 @@ function App() {
         </section> */}
       </div>
     </section>
+    </Switch>
+
     
   );
 }
