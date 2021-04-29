@@ -10,30 +10,19 @@ import axios from "axios";
 
 
 function App() {
-  // const [ourFavoriteRecipes, setOurFavoriteRecipes] = useState(MOCK_DATA);
+
   const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
 
   const [recipeToDelete, setRecipeToDelete] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
  
-  const updateSearchValue = (value)=>{
-      setSearchValue(value);
-  }
 
-  const search = ()=>{
-    console.log("Looking for the date with these keys ....");
-  }
+
+
 
   const deleteRecipe = (id)=>{
     console.log(`Recipe with id ${id} is removed from the user's profile page`);
   }
-  // axios.get(url)
-  // .then(res=>{
-  //   setOurFavoriteRecipes(res.data);
-  // })
-  // .catch(error=>{
-  //   console.log("Something went wrong");
-  // })
+
 
   return (
     <Switch>
@@ -51,10 +40,6 @@ function App() {
       <Route path="/about" component={About}/>
 
     </Switch>
-
-    
-
-    
   );
 }
 

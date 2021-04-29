@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
 import { Link } from "react-router-dom";
@@ -73,6 +73,9 @@ const RecipesDiv = styled.section`
         width:100%;
         font-size:2rem;
     }
+    form{
+        width:100%;
+    }
     input{
         margin-top:1rem;
         margin-bottom:3rem;
@@ -81,6 +84,17 @@ const RecipesDiv = styled.section`
 `
 const User = (props)=>{
     {/* SPLIT INTO COMPONENTS!!! */}
+    const [searchValue, setSearchValue] = useState("");
+
+    const updateSearchValue = (evt)=>{
+        const {value} = evt.target;
+        setSearchValue(value);
+    }
+    const search = (evt)=>{
+        evt.preventDefault();
+        console.log(`Looking for ${searchValue}`);
+        setSearchValue("");
+    }
     
     const { data, deleteRecipe, recipeModalIsOpen, setRecipeModalIsOpen } = props;
     return(
@@ -99,7 +113,11 @@ const User = (props)=>{
             {/* Make conditional (&&) */}
             <RecipesDiv>
                 <h2>Recipes</h2>
-                <input placeholder="Search"/>
+                <form onSubmit={search}>
+                    <input className="search" type="text" value={searchValue} onChange={updateSearchValue} name="keywords"/> 
+                    <button>Search</button>
+                </form>
+                
                 { 
                     data.map(recipe=>{
                     return <Recipe key={recipe.recipeid} recipe={recipe} deleteRecipe={deleteRecipe}/>
