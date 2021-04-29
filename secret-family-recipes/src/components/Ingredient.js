@@ -17,12 +17,17 @@ const DeleteButton = styled.button`
     max-height: 60%;
 `
 
-export default function Ingredient({ingredientName, ingredient, ingredients, setIngredients}) {
+export default function Ingredient({ingredientName, ingredient, formValues, setFormValues}) {
 
 
 
-    const deleteItem = () => {
-        setIngredients(ingredients.filter((el) => el.ingredientId !== ingredient.ingredientId))
+    const deleteItem = (event) => {
+        event.preventDefault()
+        // setIngredients(ingredients.filter((el) => el.ingredientId !== ingredient.ingredientId))
+        console.log(formValues.ingredients)
+        let example = formValues.ingredients.filter((el) => el.ingredientId !== ingredient.ingredientId)
+        console.log(example)
+        setFormValues({...formValues, ingredients: example})
         // console.log(ingredient)
     }
 
