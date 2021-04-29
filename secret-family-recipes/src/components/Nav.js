@@ -1,5 +1,7 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
+import SignUpModal from './SignUpModal'
+import LoginModal from './LoginModal'
 import { Link } from "react-router-dom";
 
 const StyledNav = styled.nav`
@@ -36,11 +38,17 @@ const StyledNav = styled.nav`
 `
 
 const Nav = (prop)=>{
+    const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false);
+    const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
     return(
         <StyledNav>
             {/* prevent default and pop out the login menu for these anchor tag */}
-            <Link to="/user"><button>Login</button></Link>
-            <Link to="/user"><button>Sing Up</button></Link>
+            <Link to="/user"><button>Ex Login In</button></Link>
+            <button onClick={()=> setLoginModalIsOpen(true)}>Login In</button>
+            <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen }/>
+            
+            <button onClick={()=> setSignUpModalIsOpen(true)}>Sign Up</button>
+            <SignUpModal modalIsOpen={ signUpModalIsOpen } setModalIsOpen={ setSignUpModalIsOpen }/>
         </StyledNav>
     )
 }

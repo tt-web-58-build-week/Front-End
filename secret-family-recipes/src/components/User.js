@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
 import { Link } from "react-router-dom";
+import RecipeModal from './RecipeModal'
 
 
 const StyledProfile = styled.nav`
@@ -10,7 +11,10 @@ const StyledProfile = styled.nav`
     align-items:center;
     justify-content:space-evenly;
     margin:1.5rem 1rem 1rem 2rem;
-
+    a{
+        text-decoration: none;
+    }
+    
     .userImg {
         background-image: url("https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
         background-position: center;
@@ -62,6 +66,7 @@ const RecipesDiv = styled.section`
     text-align:center;
     h2{
         width:100%;
+        font-size:2rem;
     }
     input{
         margin-top:1rem;
@@ -71,7 +76,8 @@ const RecipesDiv = styled.section`
 `
 const User = (props)=>{
     {/* SPLIT INTO COMPONENTS!!! */}
-    const { data } = props;
+    
+    const { data, deleteRecipe, recipeModalIsOpen, setRecipeModalIsOpen } = props;
     return(
         <div>
             <StyledProfile>
@@ -80,8 +86,9 @@ const User = (props)=>{
                     <h1>Jason</h1>
                 </div>
                 <div className="btns">
-                    <Link to="/"><button className="addBtn">Log Out</button></Link>
-                    <button className="logOut">Add Recipe</button>
+                    <button><Link to="/">Log Out</Link></button>
+                    <button onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
+                    <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen }/>
                 </div>
             </StyledProfile>
             {/* Make conditional (&&) */}
@@ -90,7 +97,7 @@ const User = (props)=>{
                 <input placeholder="Search"/>
                 { 
                     data.map(recipe=>{
-                    return <Recipe key={recipe.recipeid} recipe={recipe}/>
+                    return <Recipe key={recipe.recipeid} recipe={recipe} deleteRecipe={deleteRecipe}/>
                   })
                 }
             </RecipesDiv>
