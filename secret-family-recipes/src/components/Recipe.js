@@ -10,7 +10,7 @@ const DeleteBtn = styled.button`
     border-radius:50%;
 
     &:hover {
-        background-color:#810000;
+        background-color:#fb3640;
         transition: all 0.5s ease-in;
     }
     transition:all 1s ease-out;
@@ -20,11 +20,15 @@ const DeleteDiv = styled.div`
     justify-content:center;
 `
 
+const RecipeArticle = styled.article`
+    margin:2rem;
+`
+
 const Recipe = (prop)=>{
     const {recipe, deleteRecipe} = prop;
 
     return (
-        <article>
+        <RecipeArticle>
             <DeleteDiv>
                 <a>
                     <img src="https://via.placeholder.com/300"></img>
@@ -38,7 +42,7 @@ const Recipe = (prop)=>{
                 }
                 return ingredient.ingredientname;
             })}</p>
-        </article>
+        </RecipeArticle>
     )
 }
 

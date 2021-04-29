@@ -32,9 +32,11 @@ const StyledProfile = styled.nav`
         align-items: center;
     }
 
-    .logOut,button{
+    .logOut, .addRecipe{
+        display:flex;
+        align-items:center;
+        justify-content:center;
         border:solid 2px silver;
-        text-align:center;
         border-radius:10px;
         font-size:1.5rem;
         width:45%;
@@ -73,7 +75,7 @@ const RecipesDiv = styled.section`
     }
     input{
         margin-top:1rem;
-        margin-bottom:1rem;
+        margin-bottom:3rem;
         width:75%;
     }
 `
@@ -90,7 +92,7 @@ const User = (props)=>{
                 </div>
                 <div className="btns">
                     <Link to="/" className="logOut">Log Out</Link>
-                    <button onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
+                    <button className="addRecipe" onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
                     <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen }/>
                 </div>
             </StyledProfile>
