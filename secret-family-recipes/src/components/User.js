@@ -11,6 +11,7 @@ const StyledProfile = styled.nav`
     align-items:center;
     justify-content:space-evenly;
     margin:1.5rem 1rem 1rem 2rem;
+    
     a{
         text-decoration: none;
     }
@@ -31,12 +32,14 @@ const StyledProfile = styled.nav`
         align-items: center;
     }
 
-    button{
+    .logOut,button{
         border:solid 2px silver;
         text-align:center;
         border-radius:10px;
         font-size:1.5rem;
         width:45%;
+        background-color: #999b84;
+        color:#f4eee8;
     }
     
     .btns{
@@ -86,7 +89,7 @@ const User = (props)=>{
                     <h1>Jason</h1>
                 </div>
                 <div className="btns">
-                    <button><Link to="/">Log Out</Link></button>
+                    <Link to="/" className="logOut">Log Out</Link>
                     <button onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
                     <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen }/>
                 </div>

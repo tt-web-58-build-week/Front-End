@@ -4,10 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import User from "./components/User";
 import Home from "./components/Home";
 import { MOCK_DATA as data} from './mockData/mockData';
-import Modal from 'react-modal'
+
+
 import axios from "axios";
 
-Modal.setAppElement('#root')
 
 function App() {
   // const [ourFavoriteRecipes, setOurFavoriteRecipes] = useState(MOCK_DATA);
