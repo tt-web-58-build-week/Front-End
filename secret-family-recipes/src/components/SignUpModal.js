@@ -63,7 +63,7 @@ export default function SignUpModal(props) {
                     <label>Password: </label>
                         <input
                         name='password'
-                        type='text'
+                        type='password'
                         onChange={onChange}
                     />
 

@@ -28,7 +28,6 @@ export default function Ingredient({ingredientName, ingredient, ingredients, set
 
     return (
         <IngredientItem>
-            {console.log(ingredient)}
             <IngredientDescription className="ingredient-item">{ingredientName}</IngredientDescription>
             <DeleteButton onClick={deleteItem}className="trash-btn">Delete</DeleteButton>
         </IngredientItem>
