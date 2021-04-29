@@ -27,7 +27,6 @@ export default function Instruction({instructionName, instruction, instructions,
 
     return (
         <InstructionItem>
-            {console.log(instruction)}
             <InstructionDescription className="instruction-item">{instructionName}</InstructionDescription>
             <DeleteButton onClick={deleteItem}className="trash-btn">Delete</DeleteButton>
         </InstructionItem>
