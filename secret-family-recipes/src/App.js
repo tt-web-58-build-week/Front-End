@@ -4,9 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import User from "./components/User";
 import Home from "./components/Home";
 import { MOCK_DATA as data} from './mockData/mockData';
-import LoginModal from './components/LoginModal'
-import SignUpModal from './components/SignUpModal'
-import RecipeModal from './components/RecipeModal'
+import {loginRequest} from './utils/requests';
 import Modal from 'react-modal'
 import axios from "axios";
 
@@ -22,17 +20,23 @@ function App() {
   // .catch(error=>{
   //   console.log("Something went wrong");
   // })
+  const storedUserID = localStorage.getItem('userID');
+  const [userID, setUserID] = useState(storedUserID ? storedUserID : null);
+  console.log('userID:', userID);
 
-  return (
+ return (
+    
     <Switch>
-      <Route exact path="/" component={Home}/>
       <Route 
         path="/user" 
         render={props => (
           <User {...props} data={data}/>
-        )}
+          )}
       />
       <Route path="/about" component={About}/>
+      <Route exact path="/">
+        <Home submit={loginRequest} setUserID={setUserID}/>
+      </Route>
 
     </Switch>
 
