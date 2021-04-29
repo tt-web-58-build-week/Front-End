@@ -17,12 +17,16 @@ const DeleteButton = styled.button`
     max-height: 60%;
 `
 
-export default function Instruction({instructionName, instruction, instructions, setInstructions}) {
+export default function Instruction({instructionName, instruction, formValues, setFormValues}) {
 
-
-
-    const deleteItem = () => {
-        setInstructions(instructions.filter((el) => el.instructionId !== instruction.instructionId))
+    const deleteItem = (event) => {
+        // setIngredients(ingredients.filter((el) => el.ingredientId !== ingredient.ingredientId))
+        event.preventDefault()
+        console.log(formValues.instructions)
+        let example = formValues.instructions.filter((el) => el.instructionId !== instruction.instructionId)
+        console.log(example)
+        setFormValues({...formValues, instructions: example})
+        // console.log(ingredient)
     }
 
     return (
