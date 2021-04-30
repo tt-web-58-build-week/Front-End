@@ -21,14 +21,12 @@ export const loginRequest = (values, push, setUserID) => {
     })
 }
 
-export const signUpRequest = (values, push, setUserID) => {
+export const signUpRequest = (values, push) => {
+    console.log(values);
     axios
-        .post('https://tt-web58-recipe-app.herokuapp.com/api/auth/register',
-         `grant_type=password&username=${values.username}&password=${values.password}&email=${values.email}`)
+        .post('https://tt-web58-recipe-app.herokuapp.com/api/auth/register', values)
         .then(res => {
             console.log(res.data);
-            localStorage.setItem("token", res.data.access_token);
-            localStorage.setItem("userID", res.data.user_id);
             push('/');
         })
         .catch(err => {
