@@ -103,7 +103,7 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
             }
         }>
             <button style={{float: 'right'}} onClick={()=> setModalIsOpen(false)}>X</button>
-            <h2>Add Recipe</h2>
+            <h2>Recipe</h2>
             <br/>
             <form>
                 <div>

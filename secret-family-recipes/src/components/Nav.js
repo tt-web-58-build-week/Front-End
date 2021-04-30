@@ -54,11 +54,11 @@ const Nav = (props)=>{
    
     return(
         <StyledNav>
-            <Link to="/user"><button>Ex Login In</button></Link>
-            <button onClick={()=> setLoginModalIsOpen(true)}>Login In</button>
+            <Link to="/user"><button>Ex. USER</button></Link>
+            <button onClick={()=> setLoginModalIsOpen(true)}>LOGIN</button>
             <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen} submit={submit} setUserID={setUserID}/>
             
-            <button onClick={()=> setSignUpModalIsOpen(true)}>Sign Up</button>
+            <button onClick={()=> setSignUpModalIsOpen(true)}>SIGN UP</button>
             <SignUpModal modalIsOpen={ signUpModalIsOpen } setModalIsOpen={ setSignUpModalIsOpen }/>
         </StyledNav>
     )

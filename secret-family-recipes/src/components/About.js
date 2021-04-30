@@ -62,7 +62,7 @@ const About = (prop)=>{
                     Anyone can go out and buy a cookbook these days, but you want a place to store all your secret family recipes, handed down from generation to generation.
                     </h2>
                     <p>The little cards grandma wrote her recipes on in her beautiful cursive are getting lost or are hard to read. You need somewhere secure to keep my recipes with me forever!</p>
-                    <Link to="/"><button>Back</button></Link>
+                    <Link to="/"><button>BACK</button></Link>
                 </div>
         </StyledAbout>
         </div>
