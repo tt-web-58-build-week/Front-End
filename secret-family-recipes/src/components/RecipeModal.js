@@ -89,7 +89,8 @@ export default function RecipeModal(props) {
         style={
             {
                 overlay: {
-                    backgroundColor: 'rgba(0,0,0,.7)'
+                    backgroundColor: 'rgba(0,0,0,.7)',
+                    zIndex: '100',
                 },
                 content: {
                     margin: 'auto',
@@ -103,7 +104,7 @@ export default function RecipeModal(props) {
             }
         }>
             <button style={{float: 'right'}} onClick={()=> setModalIsOpen(false)}>X</button>
-            <h2>Add Recipe</h2>
+            <h2>Recipe</h2>
             <br/>
             <form>
                 <div>
