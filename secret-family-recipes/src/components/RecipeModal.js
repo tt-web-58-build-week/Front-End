@@ -89,7 +89,8 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
         style={
             {
                 overlay: {
-                    backgroundColor: 'rgba(0,0,0,.7)'
+                    backgroundColor: 'rgba(0,0,0,.7)',
+                    zIndex: '100',
                 },
                 content: {
                     margin: 'auto',

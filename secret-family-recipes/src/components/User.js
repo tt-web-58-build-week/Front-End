@@ -61,10 +61,16 @@ const StyledProfile = styled.nav`
 `
 const RecipesDiv = styled.section`
     background-color: ${pr => pr.theme.lightGray};
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
     height: 90vh;
     padding: 1rem 20rem;
+
+    form {
+        width: 100%;
+    }
 `
 const searchInitialValue = {
     category: "",

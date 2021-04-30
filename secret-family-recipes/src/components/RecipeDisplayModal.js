@@ -34,7 +34,8 @@ export default function RecipeDisplayModal({recipeDisplayModalIsOpen, setRecipeD
         style={
             {
                 overlay: {
-                    backgroundColor: 'rgba(0,0,0,.7)'
+                    backgroundColor: 'rgba(0,0,0,.7)',
+                    zIndex: '100',
                 },
                 content: {
                     margin: 'auto',
