@@ -19,6 +19,9 @@ export const loginRequest = (values, push, setUserID) => {
         localStorage.setItem("userID", res.data.user_id);
         push('/user');
     })
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 export const signUpRequest = (values, push) => {
@@ -28,6 +31,20 @@ export const signUpRequest = (values, push) => {
         .then(res => {
             console.log(res.data);
             push('/');
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+
+export const recipeSubmitRequest = (formValues, ingredients, instructions, push) => {
+    console.log(formValues);
+    axios
+        .post('https://tt-web58-recipe-app.herokuapp.com/api/recipes', formValues, ingredients, instructions)
+        .then(res => {
+            console.log(res);
+            push('/user')
         })
         .catch(err => {
             console.log(err)

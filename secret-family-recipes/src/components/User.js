@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
+import RecipeModal from "./RecipeModal"
 import { Link } from "react-router-dom";
 
 
@@ -70,11 +71,15 @@ const RecipesDiv = styled.section`
     }
 `
 const User = (props)=>{
-    // {/* SPLIT INTO COMPONENTS!!! */}
+
+    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
+
     const logout = () => {
         window.localStorage.removeItem("token");
       };
+
     const { data } = props;
+
     return(
         <div>
             <StyledProfile>
@@ -84,9 +89,10 @@ const User = (props)=>{
                 </div>
                 <div className="btns">
                     <Link onClick={logout} to="/">
-                        <button className="addBtn">Log Out</button>
+                        <button className="logOut">Log Out</button>
                     </Link>
-                    <button className="logOut">Add Recipe</button>
+                    <button onClick={()=> setRecipeModalIsOpen(true)} className="addBtn">Add Recipe</button>
+                    <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } />
                 </div>
             </StyledProfile>
             {/* Make conditional (&&) */}
