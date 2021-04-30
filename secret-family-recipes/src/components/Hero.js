@@ -35,8 +35,8 @@ const StyledHero = styled.section`
     }
 
     p {
-        font-family: serif;
         font-size: 2.25rem;
+        color: ${pr => pr.theme.lightGray};
     }
 
     h1 {
@@ -109,12 +109,6 @@ const StyledHero = styled.section`
 const Hero = (prop) => {
     return (
         <StyledHero>
-            <ul>
-                <li>Twitter</li>
-                <li>GitHub</li>
-                <li>Dribbble</li>
-                <li>Email</li>
-            </ul>
             <div>
                 <h1>Secret Family Recipes<span>.com</span></h1>
                 <p>Find that exquisite dish to wow all your friends while keeping your history and traditions safe and alive with Secret Family Recipe.com</p>

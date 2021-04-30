@@ -2,24 +2,6 @@ import React from "react";
 import styled from "styled-components"
 import RecipeDisplayModal from './RecipeDisplayModal'
 
-const DeleteBtn = styled.button`
-    z-index=999;
-    margin-left:-1.25rem;
-    margin-top:-1rem;
-    height:3rem;
-    width:3rem;
-    border-radius:50%;
-
-    &:hover {
-        background-color:#fb3640;
-        transition: all 0.5s ease-in;
-    }
-    transition:all 1s ease-out;
-`
-const DeleteDiv = styled.div`
-    display:flex;
-    justify-content:center;
-`
 
 const RecipeArticle = styled.article`
     margin:2rem;
@@ -31,12 +13,12 @@ const Recipe = (prop)=>{
     return (
         <>
             <RecipeArticle>
-                <DeleteDiv>
+                <div>
                     <a onClick={()=> setRecipeDisplayModalIsOpen(true)}>
-                        <img src="https://via.placeholder.com/300"></img>
+                        <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2019/9/10/1/FN_Cuban-Baked-Chicken-Sweet-Peppers_H1_s4x3.jpg.rend.hgtvcom.406.406.suffix/1568400649361.jpeg"></img>
                     </a>
-                    <DeleteBtn onClick={()=>deleteRecipe(recipe.recipeid)}>x</DeleteBtn>
-                </DeleteDiv>
+                    <button onClick={()=>deleteRecipe(recipe.recipeid)}>x</button>
+                </div>
                 <h3>{`${recipe.title} from ${recipe.source}`}</h3>
                 <p>Ingredients: {recipe.ingredients.map(ingredient=>{
                     if(recipe.ingredients.indexOf(ingredient)!== recipe.ingredients.length-1){

@@ -6,16 +6,17 @@ import RecipeModal from './RecipeModal'
 
 
 const StyledProfile = styled.nav`
-
-    display:flex;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 10rem;
+    display: flex;
+    justify-content: space-between;
     align-items:center;
-    justify-content:space-evenly;
-    margin:1.5rem 1rem 1rem 2rem;
-    a{
-        text-decoration: none;
-    }
+    height: 10vh;
+
+
     .userImg {
-        background-image: url("https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
+        background-image: url("https://cdn.pixabay.com/photo/2015/03/03/18/58/woman-657753_1280.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -28,69 +29,48 @@ const StyledProfile = styled.nav`
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        h1 {
+            font-family: serif;
+            font-size: 3.5rem;
+            margin-left: 2rem;
+        }
     }
 
-    .logOut, .addRecipe{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        border:solid 2px silver;
-        border-radius:10px;
-        font-size:1.5rem;
-        width:45%;
-        background-color: #999b84;
-        color:#f4eee8;
-    }
+    button {
+        color: ${pr => pr.theme.lightGray};
+        letter-spacing: 1px;
+        height: 50px;
+        width: 150px;
+        margin: 10px 20px;
+        border-radius: 0;
+        background-color: ${pr => pr.theme.darkGray};
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: inherit;
+        transition: all .5s ease-out;
     
-    .btns{
-        display:flex;
-        justify-content:space-between;
-        width:40%;
-    }
-
-    @media(min-width:500px){
-
-        img{
-            width:25%;
-            border-radius:100%;
-        }
-        h1{
-            font-size:3.5rem;
-            margin-left:1rem;
+        &:hover {
+            background-color: ${pr => pr.theme.lightGray};
+            border: 3px solid ${pr => pr.theme.gray};
+            color: ${pr => pr.theme.gray};
+            transition: all .1s ease-in;
         }
 
-
-    }
 `
 const RecipesDiv = styled.section`
-    display:flex;
-    flex-flow:row wrap;
-    justify-content:center;
-    text-align:center;
-    h2{
-        width:100%;
-        font-size:2rem;
-    }
-    form{
-        width:100%;
-    }
-    .category{
-        width:15%;
-        height:43%;
-        
-    }
-    input{
-        margin-top:1rem;
-        margin-bottom:3rem;
-        width:65%;
-    }
+    background-color: ${pr => pr.theme.lightGray};
+    margin: 0 auto;
+    width: 100%;
+    height: 90vh;
+    padding: 1rem 20rem;
 `
 const searchInitialValue = {
     category: "",
     keywords:""
 }
 const User = (props)=>{
-    // {/* SPLIT INTO COMPONENTS!!! */}
     const [searchValue, setSearchValue] = useState(searchInitialValue);
 
     const [recipeDisplayModalIsOpen, setRecipeDisplayModalIsOpen] = useState(false)
@@ -113,20 +93,19 @@ const User = (props)=>{
             <StyledProfile>
                 <div className="user">
                     <div className="userImg"></div>
-                    <h1>Jason</h1>
+                    <h1>Rebecca</h1>
                 </div>
                 <div className="btns">
-                    <Link to="/" className="logOut">Log Out</Link>
+                    <Link to="/"><button>Log Out</button></Link>
                     <button className="addRecipe" onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
                     <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
                 </div>
             </StyledProfile>
-            {/* Make conditional (&&) */}
             <RecipesDiv>
                 <h2>Recipes</h2>
                 <form onSubmit={search}>
                     <select className="category" name="category" onChange={updateSearchValue}>
-                        <option value="">Categories</option>
+                        <option value="">-- Select a Category --</option>
                         <option value="Mexican">Mexican</option>
                         <option value="Italian">Italian</option>
                         <option value ="Dessert">Dessert</option>
@@ -143,7 +122,7 @@ const User = (props)=>{
                         <option value="French">French</option>
 
                     </select>
-                    <input className="search" type="text" value={searchValue.keywords} onChange={updateSearchValue} name="keywords"/> 
+                    <input className="search" type="text" value={searchValue.keywords} onChange={updateSearchValue} name="keywords" placeholder="Search for a favorite or something new!"/> 
                     <button>Search</button>
                 </form>
                 { 
