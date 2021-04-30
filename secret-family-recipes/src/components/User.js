@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
+import RecipeModal from "./RecipeModal"
 import { Link } from "react-router-dom";
 import RecipeModal from './RecipeModal'
 
@@ -90,12 +91,14 @@ const searchInitialValue = {
     keywords:""
 }
 const User = (props)=>{
-    // {/* SPLIT INTO COMPONENTS!!! */}
-    const [searchValue, setSearchValue] = useState(searchInitialValue);
 
-    const [recipeDisplayModalIsOpen, setRecipeDisplayModalIsOpen] = useState(false)
-    const initialStateValues = {title: '', source: '', ingredients: [], instructions: [], category:[]}
-    const [formValues, setFormValues] = useState(initialStateValues)
+    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
+    const { submit, data, deleteRecipe } = props;
+    const [searchValue, setSearchValue] = useState(searchInitialValue);
+    
+    const logout = () => {
+        window.localStorage.removeItem("token");
+      };
 
     const updateSearchValue = (evt)=>{
         const {name,value} = evt.target;
@@ -106,8 +109,7 @@ const User = (props)=>{
         console.log(`Looking for ${searchValue.keywords} from category ${searchValue.category}`);
         setSearchValue(searchInitialValue);
     }
-    
-    const { data, deleteRecipe, recipeModalIsOpen, setRecipeModalIsOpen } = props;
+
     return(
         <div>
             <StyledProfile>
@@ -116,9 +118,11 @@ const User = (props)=>{
                     <h1>Jason</h1>
                 </div>
                 <div className="btns">
-                    <Link to="/" className="logOut">Log Out</Link>
-                    <button className="addRecipe" onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
-                    <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
+                    <Link onClick={logout} to="/">
+                        <button className="logOut">Log Out</button>
+                    </Link>
+                    <button onClick={()=> setRecipeModalIsOpen(true)} className="addBtn">Add Recipe</button>
+                    <RecipeModal submit={submit} modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } />
                 </div>
             </StyledProfile>
             {/* Make conditional (&&) */}

@@ -13,6 +13,12 @@ const StyledHome = styled.div`
       }
 `
 
+export default function Home(props){
+    const { submitS, submitL, setUserID } = props
+
+    // const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
+    // const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
+    // const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
 
 
 export default function Home(props){
@@ -24,7 +30,8 @@ export default function Home(props){
             {/* <Hero userID={userID} /> */}
             <Hero />
             {/* <Nav setUserID={setUserID}/> */}
-            <Nav submit={submit} setUserID={setUserID}/>
+            <Nav submitS={submitS} submitL={submitL} setUserID={setUserID}/>
+            <ModalTest/>
         </StyledHome>
     )
 }
