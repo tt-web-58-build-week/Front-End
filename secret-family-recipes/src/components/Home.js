@@ -6,6 +6,7 @@ import ModalTest from './ModalTest'
 
 const StyledHome = styled.div`
     display: flex;
+    flex-direction: column-reverse;
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -29,7 +30,7 @@ export default function Home(props){
             <Hero />
             {/* <Nav setUserID={setUserID}/> */}
             <Nav submit={submit} setUserID={setUserID}/>
-            <ModalTest/>
+            {/*<ModalTest/>*/}
         </StyledHome>
     )
 }
