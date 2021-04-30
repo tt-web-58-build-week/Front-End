@@ -5,9 +5,8 @@ import InstructionList from './InstructionList'
 import _uniqueID from 'lodash/uniqueId'
 import { object } from 'yup';
 
-export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
-    const initialStateValues = {title: '', source: '', ingredients: [], instructions: [], category:[]}
-    const [formValues, setFormValues] = useState(initialStateValues)
+export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, setFormValues, initialStateValues}) {
+
     const [textValue, setTextValue] = useState({})
     
 
@@ -114,6 +113,7 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
                         name="title"
                         type="text"
                         onChange={onChange}
+                        value={formValues.title}
                     />
                 </div>
                 <div>
@@ -123,6 +123,7 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
                         name="source"
                         type="text"
                         onChange={onChange}
+                        value={formValues.source}
                     />
                 </div>
 
@@ -160,6 +161,7 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
                         placeholder='Dessert...' 
                         name="category"
                         type="text"
+                        value={formValues.category}
                         onChange={onChange}>
                             <option value="" disabled></option>
                             <option value="Mexican">Mexican</option>
