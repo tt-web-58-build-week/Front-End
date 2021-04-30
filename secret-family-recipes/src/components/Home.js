@@ -13,7 +13,7 @@ const StyledHome = styled.div`
 `
 
 export default function Home(props){
-    const { submit, setUserID } = props
+    const { submitS, submitL, setUserID } = props
 
     // const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
     // const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
@@ -28,7 +28,7 @@ export default function Home(props){
             {/* <Hero userID={userID} /> */}
             <Hero />
             {/* <Nav setUserID={setUserID}/> */}
-            <Nav submit={submit} setUserID={setUserID}/>
+            <Nav submitS={submitS} submitL={submitL} setUserID={setUserID}/>
             <ModalTest/>
         </StyledHome>
     )

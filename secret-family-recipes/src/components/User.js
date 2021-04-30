@@ -71,6 +71,9 @@ const RecipesDiv = styled.section`
 `
 const User = (props)=>{
     // {/* SPLIT INTO COMPONENTS!!! */}
+    const logout = () => {
+        window.localStorage.removeItem("token");
+      };
     const { data } = props;
     return(
         <div>
@@ -80,7 +83,9 @@ const User = (props)=>{
                     <h1>Jason</h1>
                 </div>
                 <div className="btns">
-                    <Link to="/"><button className="addBtn">Log Out</button></Link>
+                    <Link onClick={logout} to="/">
+                        <button className="addBtn">Log Out</button>
+                    </Link>
                     <button className="logOut">Add Recipe</button>
                 </div>
             </StyledProfile>
