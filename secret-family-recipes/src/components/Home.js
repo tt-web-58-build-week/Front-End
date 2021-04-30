@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Hero from './Hero';
 import styled from 'styled-components';
 import ModalTest from './ModalTest'
+import RecipeModal from './RecipeModal'
 
 const StyledHome = styled.div`
     display: flex;
@@ -12,8 +13,11 @@ const StyledHome = styled.div`
       }
 `
 
+
+
 export default function Home(props){
     const { submit, setUserID } = props
+    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
 
     // const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
     // const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
@@ -23,6 +27,7 @@ export default function Home(props){
 
     // const [userID, setUserID] = useState(storedUserID ? storedUserID : null);
 
+
     return(
         <StyledHome>
             {/* <Hero userID={userID} /> */}
@@ -30,6 +35,7 @@ export default function Home(props){
             {/* <Nav setUserID={setUserID}/> */}
             <Nav submit={submit} setUserID={setUserID}/>
             <ModalTest/>
+            
         </StyledHome>
     )
 }
