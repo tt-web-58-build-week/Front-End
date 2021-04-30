@@ -152,7 +152,7 @@ const User = (props)=>{
                 { 
                     data.map(recipe=>{
                     return <Recipe key={recipe.recipeid} recipe={recipe} deleteRecipe={deleteRecipe}
-                    recipeDisplayModalIsOpen={ recipeDisplayModalIsOpen } setRecipeDisplayModalIsOpen={ setRecipeDisplayModalIsOpen } recipeModalIsOpen={ recipeModalIsOpen } setRecipeModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
+                    />
                   })
                 }
             </RecipesDiv>

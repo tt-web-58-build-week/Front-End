@@ -27,7 +27,6 @@ export default function Home(props){
             <Hero />
             {/* <Nav setUserID={setUserID}/> */}
             <Nav submitS={submitS} submitL={submitL} setUserID={setUserID}/>
-            <ModalTest/>
         </StyledHome>
     )
 }

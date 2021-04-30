@@ -48,8 +48,6 @@ export default function RecipeModal(props) {
         if(formValues.ingredient !== '' && formValues.ingredient !== undefined) {
             formValues.ingredients = [...formValues.ingredients, {ingredientName: formValues.ingredient, ingredientId: _uniqueID('prefix-')}]
         }
-        document.querySelector('#ingredient-input').value = ''
-        setTextValue({...textValue, ingredient: ''})
     }
 
     const addInstruction = event => {
@@ -58,8 +56,6 @@ export default function RecipeModal(props) {
             formValues.instructions = [...formValues.instructions, {instructionName: formValues.instruction, instructionId: _uniqueID('prefix-')}]
 
         }
-        document.querySelector('#instruction-input').value = ''
-        setTextValue({...textValue, instruction: ''})
     }
 
     const closeModal = () => {
@@ -143,7 +139,6 @@ export default function RecipeModal(props) {
                         name="ingredient"
                         type="text"
                         onChange={onChange}
-                        onKeyPress={enterButtonCheckIngredients}
                     />
                     <button onClick={addIngredient} id="add-ingredient-button">Add</button>
                     <IngredientList formValues={formValues} setFormValues={setFormValues}/>
@@ -157,7 +152,6 @@ export default function RecipeModal(props) {
                         name="instruction"
                         type="text"
                         onChange={onChange}
-                        onKeyPress={enterButtonCheckInstructions}
                     />
                     <button onClick={addInstruction} id="add-instruction-button">Add</button>
                     <InstructionList formValues={formValues} setFormValues={setFormValues}/>
