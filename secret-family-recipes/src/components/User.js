@@ -74,28 +74,37 @@ const RecipesDiv = styled.section`
     form{
         width:100%;
     }
+    .category{
+        width:15%;
+        height:43%;
+        
+    }
     input{
         margin-top:1rem;
         margin-bottom:3rem;
-        width:75%;
+        width:65%;
     }
 `
+const searchInitialValue = {
+    category: "",
+    keywords:""
+}
 const User = (props)=>{
     // {/* SPLIT INTO COMPONENTS!!! */}
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState(searchInitialValue);
 
     const [recipeDisplayModalIsOpen, setRecipeDisplayModalIsOpen] = useState(false)
     const initialStateValues = {title: '', source: '', ingredients: [], instructions: [], category:[]}
     const [formValues, setFormValues] = useState(initialStateValues)
 
     const updateSearchValue = (evt)=>{
-        const {value} = evt.target;
-        setSearchValue(value);
+        const {name,value} = evt.target;
+        setSearchValue({...searchValue, [name]:value});
     }
     const search = (evt)=>{
         evt.preventDefault();
-        console.log(`Looking for ${searchValue}`);
-        setSearchValue("");
+        console.log(`Looking for ${searchValue.keywords} from category ${searchValue.category}`);
+        setSearchValue(searchInitialValue);
     }
     
     const { data, deleteRecipe, recipeModalIsOpen, setRecipeModalIsOpen } = props;
@@ -116,7 +125,25 @@ const User = (props)=>{
             <RecipesDiv>
                 <h2>Recipes</h2>
                 <form onSubmit={search}>
-                    <input className="search" type="text" value={searchValue} onChange={updateSearchValue} name="keywords"/> 
+                    <select className="category" name="category" onChange={updateSearchValue}>
+                        <option value="">Categories</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Italian">Italian</option>
+                        <option value ="Dessert">Dessert</option>
+                        <option value="BBQ">BBQ</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Egyptian">Egyptian</option>
+                        <option value="Hawaiian">Hawaiian</option>
+                        <option value="Chuck Norris Fuel">Chuck Norris Fuel</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Pizza">Pizza</option>
+                        <option value="French">French</option>
+
+                    </select>
+                    <input className="search" type="text" value={searchValue.keywords} onChange={updateSearchValue} name="keywords"/> 
                     <button>Search</button>
                 </form>
                 { 
