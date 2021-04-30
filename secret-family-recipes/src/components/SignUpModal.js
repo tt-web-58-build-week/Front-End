@@ -1,33 +1,80 @@
-import React,{useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router';
 import Modal from 'react-modal';
-import axios from "axios"
+import * as yup from 'yup';
+
+const INITIAL_FORM_VALUES = {
+    username: '',
+    email: '',
+    password: ''
+} 
+
+const INITIAL_FORM_ERRORS = {
+    username: '',
+    email: '',
+    password: ''
+}
+
+const schema = yup.object().shape({
+    username: yup.string().required('required'),
+    email: yup.string().required('required'),
+    password: yup.string().required('required')
+})
+
 
 export default function SignUpModal(props) {
-    const {modalIsOpen, setModalIsOpen} = props
-    const [formValues, setFormValues] = useState({})
+    const {modalIsOpen, setModalIsOpen, submitS, setUserID} = props
+    const [values, setValues] = useState(INITIAL_FORM_VALUES);
+    const [errors, setErrors] = useState(INITIAL_FORM_ERRORS);
+    const [disabled, setDisabled] = useState(true);
+    const { push } = useHistory();
 
-    const apiURL = "https://tt-web58-recipe-app.herokuapp.com/swagger-ui.html"
-
-    const onChange = event => {
-        const {name, value} = event.target
-        setFormValues({...formValues, [name]: value})
-    }
 
     const onSubmit = event => {
         event.preventDefault();
-        setModalIsOpen(false)
-    }
-
-    const doIt = () => {
-        axios.get(apiURL)
-        .then(res => {
-            console.log(res)
+        schema.validate(values)
+        .then(_ => {
+        submitS(values, push, setUserID);
+        setModalIsOpen(false);
+        setValues(INITIAL_FORM_VALUES);
+        setErrors(INITIAL_FORM_ERRORS);
         })
         .catch(err => {
             console.log(err)
         })
     }
 
+    const onChange = event => {
+        const {name, value} = event.target
+        setValues({
+            ...values,
+            [name]: value
+        })
+
+        yup.reach(schema, name)
+            .validate(value)
+            .then(_ => {
+                setErrors({
+                    ...errors,
+                    [name]: ''
+                })
+            })
+            .catch(err => {
+                setErrors({ 
+                    ...errors,
+                    [name]: err.errors[0]
+                })
+                    setDisabled(true)
+            })
+    }
+
+    useEffect(() => {
+        schema.validate(values)
+            .then(isValid => setDisabled(!isValid))
+            .catch(err => console.log(err))
+    })
+
+    
     return (
         <Modal isOpen={modalIsOpen} 
         onRequestClose={() => setModalIsOpen(false)}
@@ -52,25 +99,37 @@ export default function SignUpModal(props) {
                 <h2>User Sign Up</h2>
                 <br/>
                 <div>
+                    <label>Username: </label>
+                    <input
+                        onChange={onChange}
+                        value={values.username}
+                        name='username'
+                        type='text'
+                        error={errors.username}
+                    />
+
                     <label>Email: </label>
                     <input
-                        name='email'
-                        type='text'
                         onChange={onChange}
+                        value={values.email}
+                        name='email'
+                        type='email'
+                        error={errors.email}
                     />
                     <br/>
 
                     <label>Password: </label>
                         <input
-                        name='password'
-                        type='password'
                         onChange={onChange}
+                        value={values.password}
+                        name='password'
+                        type='text'
+                        error={errors.password}
                     />
 
-                    <button id='submit-button'>Register</button>
+                    <button variant={disabled ? 'disabled' : 'success'} id='submit-button'>Register</button>
                 </div>
-            </form>
-            <button onClick={doIt}>console log the users api</button>
+            </form> 
         </Modal>
     )
 }

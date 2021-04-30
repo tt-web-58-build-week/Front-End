@@ -4,8 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import User from "./components/User";
 import Home from "./components/Home";
 import { MOCK_DATA as data} from './mockData/mockData';
-import {loginRequest} from './utils/requests';
-import Modal from 'react-modal';
+import {signUpRequest, loginRequest, recipeSubmitRequest} from './utils/requests';
+import Modal from 'react-modal'
 import axios from "axios";
 
 Modal.setAppElement('#root')
@@ -30,15 +30,12 @@ function App() {
       <Route 
         path="/user" 
         render={props => (
-          <User {...props} data={data}
-          deleteRecipe={deleteRecipe} 
-          recipeModalIsOpen={recipeModalIsOpen}
-          setRecipeModalIsOpen={setRecipeModalIsOpen}/>
+          <User {...props} submit={recipeSubmitRequest} data={data}/>
           )}
       />
       <Route path="/about" component={About}/>
       <Route exact path="/">
-        <Home submit={loginRequest} setUserID={setUserID}/>
+        <Home submitS={signUpRequest} submitL ={loginRequest} setUserID={setUserID}/>
       </Route>
 
     </Switch>

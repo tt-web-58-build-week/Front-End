@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
+import RecipeModal from "./RecipeModal"
 import { Link } from "react-router-dom";
-import RecipeModal from './RecipeModal'
 
 
 const StyledProfile = styled.nav`
@@ -77,11 +77,13 @@ const searchInitialValue = {
     keywords:""
 }
 const User = (props)=>{
+    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
+    const { submit, data, deleteRecipe } = props;
     const [searchValue, setSearchValue] = useState(searchInitialValue);
-
-    const [recipeDisplayModalIsOpen, setRecipeDisplayModalIsOpen] = useState(false)
-    const initialStateValues = {title: '', source: '', ingredients: [], instructions: [], category:[]}
-    const [formValues, setFormValues] = useState(initialStateValues)
+    
+    const logout = () => {
+        window.localStorage.removeItem("token");
+      };
 
     const updateSearchValue = (evt)=>{
         const {name,value} = evt.target;
@@ -92,8 +94,7 @@ const User = (props)=>{
         console.log(`Looking for ${searchValue.keywords} from category ${searchValue.category}`);
         setSearchValue(searchInitialValue);
     }
-    
-    const { data, deleteRecipe, recipeModalIsOpen, setRecipeModalIsOpen } = props;
+
     return(
         <div>
             <StyledProfile>
@@ -102,10 +103,12 @@ const User = (props)=>{
                     <h1>Rebecca</h1>
                 </div>
                 <div className="btns">
-                    <Link to="/"><button>Log Out</button></Link>
-                    <button className="addRecipe" onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
-                    <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
-                </div>
+                    <Link onClick={logout} to="/">
+                        <button className="logOut">Log Out</button>
+                    </Link>
+                    <button onClick={()=> setRecipeModalIsOpen(true)} className="addBtn">Add Recipe</button>
+                    <RecipeModal submit={submit} modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } />
+        </div>
             </StyledProfile>
             <RecipesDiv>
                 <h2>Recipes</h2>
@@ -134,7 +137,7 @@ const User = (props)=>{
                 { 
                     data.map(recipe=>{
                     return <Recipe key={recipe.recipeid} recipe={recipe} deleteRecipe={deleteRecipe}
-                    recipeDisplayModalIsOpen={ recipeDisplayModalIsOpen } setRecipeDisplayModalIsOpen={ setRecipeDisplayModalIsOpen } recipeModalIsOpen={ recipeModalIsOpen } setRecipeModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
+                    />
                   })
                 }
             </RecipesDiv>
