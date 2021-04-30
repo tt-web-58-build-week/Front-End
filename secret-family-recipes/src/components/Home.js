@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Nav from './Nav';
 import Hero from './Hero';
 import styled from 'styled-components';
-import ModalTest from './ModalTest'
+
 
 const StyledHome = styled.div`
     display: flex;
@@ -13,16 +13,11 @@ const StyledHome = styled.div`
       }
 `
 
+
+
 export default function Home(props){
     const { submit, setUserID } = props
-
-    // const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
-    // const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false)
-    // const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
-
-    // const storedUserID = localStorage.getItem('userID');
-
-    // const [userID, setUserID] = useState(storedUserID ? storedUserID : null);
+    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
 
     return(
         <StyledHome>
@@ -30,7 +25,6 @@ export default function Home(props){
             <Hero />
             {/* <Nav setUserID={setUserID}/> */}
             <Nav submit={submit} setUserID={setUserID}/>
-            {/*<ModalTest/>*/}
         </StyledHome>
     )
 }
