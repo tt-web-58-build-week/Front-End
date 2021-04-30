@@ -2,6 +2,59 @@ import React,{useState, useEffect} from 'react';
 import Modal from 'react-modal';
 import * as yup from 'yup';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    height: 70%;
+
+    input {
+        width: 100%;
+        height: 4rem;
+        font-size: 2rem;
+        border: none;
+        padding: 10px;
+
+        @media (max-width: 768px) {
+            height: 6rem;
+            font-size: 3rem;
+        }
+    }
+    
+    button {
+        display: inline-block;
+        color: ${pr => pr.theme.lightGray};
+        letter-spacing: 1px;
+        height: 50px;
+        width: 150px;
+        margin: 10px 20px;
+        border-radius: 0;
+        background-color: ${pr => pr.theme.darkGray};
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: inherit;
+        transition: all .5s ease-out;
+        margin: 0 auto;
+    
+        &:hover {
+            background-color: ${pr => pr.theme.lightGray};
+            border: 3px solid ${pr => pr.theme.gray};
+            color: ${pr => pr.theme.gray};
+            transition: all .1s ease-in;
+            }
+        }
+        .cancelButton {
+            background-color: ${pr => pr.theme.red};
+
+            &:hover {
+                border: 3px solid ${pr => pr.theme.red};
+                color: ${pr => pr.theme.red};
+            }
+        }
+`
 
 const INITIAL_FORM_VALUES = {
     username: '',
@@ -90,49 +143,42 @@ export default function LoginModal(props) {
     return (
         <Modal isOpen={modalIsOpen} 
         onRequestClose={() => setModalIsOpen(false)}
+        className='loginModal'
         portalClassName='modal'
         style={
             {
                 overlay: {
-                    backgroundColor: 'rgba(0,0,0,.7)'
+                    backgroundColor: 'rgba(16, 20, 16, .98)',
+                    borderRadius: 'none',
                 },
                 content: {
-                    margin: 'auto',
-                    color: 'orange',
-                    maxWidth: '22em',
-                    minHeight: '15%',
-                    maxHeight: '40%',
                 }
             }
         }
         >
-            <form onSubmit={onSubmit}>
-                <button style={{float: 'right'}} onClick={()=> setModalIsOpen(false)}>X</button>
-                <h2>User Login</h2>
-                <br/>
-                <div>
-                    <label>Username: </label>
-                    <input
-                        onChange={onChange}
-                        value={values.username}
-                        name='username'
-                        type='text'
-                        error={errors.username}
-                        />
-                    <br/>
-
-                    <label>Password: </label>
+            <h2>Welcome back, foodies!</h2>
+            <StyledForm onSubmit={onSubmit}>
+                <label>Username <br/>
                         <input
-                        onChange={onChange}
-                        value={values.password}
-                        name='password'
-                        type='password'
-                        error={errors.password}
+                            onChange={onChange}
+                            value={values.username}
+                            name='username'
+                            type='text'
+                            error={errors.username}
+                            />
+                    </label>
+                    <label>Password <br/>
+                        <input
+                            onChange={onChange}
+                            value={values.password}
+                            name='password'
+                            type='password'
+                            error={errors.password}
                         />
-
-                    <button variant={disabled ? 'disabled' : 'success'}>Login</button>
-                </div>
-            </form>
+                    </label>
+                <button variant={disabled ? 'disabled' : 'success'}>LOGIN</button>
+                <button className="cancelButton" onClick={()=> setModalIsOpen(false)}>CANCEL</button>
+            </StyledForm>
             {/* <button id="do-it-button" onClick={doIt}>console log the users api</button> */}
         </Modal>
     )
