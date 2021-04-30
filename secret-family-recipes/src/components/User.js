@@ -78,7 +78,7 @@ const User = (props)=>{
         window.localStorage.removeItem("token");
       };
 
-    const { data } = props;
+    const { submit, data } = props;
 
     return(
         <div>
@@ -92,7 +92,7 @@ const User = (props)=>{
                         <button className="logOut">Log Out</button>
                     </Link>
                     <button onClick={()=> setRecipeModalIsOpen(true)} className="addBtn">Add Recipe</button>
-                    <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } />
+                    <RecipeModal submit={submit} modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } />
                 </div>
             </StyledProfile>
             {/* Make conditional (&&) */}

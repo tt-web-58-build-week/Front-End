@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import Modal from 'react-modal'
 import IngredientList from './IngredientList'
 import InstructionList from './InstructionList'
@@ -25,7 +25,8 @@ const schema = yup.object().shape({
     category: yup.string().required('required')
 })
 
-export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
+export default function RecipeModal(props) {
+    const {modalIsOpen, setModalIsOpen, submit} = props
     const [formValues, setFormValues] = useState({INITIAL_FORM_VALUES})
     const [errors, setErrors] = useState({INITIAL_FORM_ERRORS})
     const [ingredients, setIngredients] = useState([])
@@ -40,18 +41,7 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
         
     }
 
-    const onSubmit = event => {
-        event.preventDefault();
-        schema.validate(formValues)
-        .then(_ => {
-        setModalIsOpen(false)
-        setFormValues(INITIAL_FORM_VALUES);
-        setErrors(INITIAL_FORM_ERRORS);
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
+   
 
     const addIngredient = event => {
         event.preventDefault();
@@ -74,6 +64,21 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen}) {
         }
         document.querySelector('#instruction-input').value = ''
         // setFormValues('')
+    }
+
+
+    const onSubmit = event => {
+        event.preventDefault();
+        schema.validate(formValues)
+        .then(_ => {
+        submit(formValues, ingredients, instructions)
+        setModalIsOpen(false)
+        setFormValues(INITIAL_FORM_VALUES);
+        setErrors(INITIAL_FORM_ERRORS);
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     return (

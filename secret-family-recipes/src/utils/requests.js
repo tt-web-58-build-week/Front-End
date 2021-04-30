@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { axiosWithAuth } from "./../utils/AxiosWithAuth";
 
 export const loginRequest = (values, push, setUserID) => {
     axios
@@ -40,8 +41,8 @@ export const signUpRequest = (values, push) => {
 
 export const recipeSubmitRequest = (formValues, ingredients, instructions, push) => {
     console.log(formValues);
-    axios
-        .post('https://tt-web58-recipe-app.herokuapp.com/api/recipes', formValues, ingredients, instructions)
+    return axiosWithAuth()
+        .post('/api/recipes', formValues, ingredients, instructions, push)
         .then(res => {
             console.log(res);
             push('/user')

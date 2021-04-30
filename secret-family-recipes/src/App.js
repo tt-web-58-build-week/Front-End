@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import User from "./components/User";
 import Home from "./components/Home";
 import { MOCK_DATA as data} from './mockData/mockData';
-import {signUpRequest, loginRequest} from './utils/requests';
+import {signUpRequest, loginRequest, recipeSubmitRequest} from './utils/requests';
 import Modal from 'react-modal'
 import axios from "axios";
 
@@ -30,7 +30,7 @@ function App() {
       <Route 
         path="/user" 
         render={props => (
-          <User {...props} data={data}/>
+          <User {...props} submit={recipeSubmitRequest} data={data}/>
           )}
       />
       <Route path="/about" component={About}/>
