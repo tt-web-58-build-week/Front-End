@@ -5,6 +5,7 @@ import RecipeDisplayModal from './RecipeDisplayModal'
 
 const RecipeArticle = styled.article`
     margin:2rem;
+    width: 300px;
 
     .dishContainer {
         position: relative;
