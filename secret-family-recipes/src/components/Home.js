@@ -21,10 +21,6 @@ export default function Home(props){
     // const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
 
 
-export default function Home(props){
-    const { submit, setUserID } = props
-    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false)
-
     return(
         <StyledHome>
             {/* <Hero userID={userID} /> */}

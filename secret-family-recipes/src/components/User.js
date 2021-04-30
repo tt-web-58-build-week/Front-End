@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Recipe from "./Recipe";
 import RecipeModal from "./RecipeModal"
 import { Link } from "react-router-dom";
-import RecipeModal from './RecipeModal'
 
 
 const StyledProfile = styled.nav`
