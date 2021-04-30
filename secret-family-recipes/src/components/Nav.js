@@ -52,13 +52,13 @@ const Nav = (props)=>{
         <StyledNav>
             {/* prevent default and pop out the login menu for these anchor tag */}
             {/* <Link to="/user"><button>Login</button></Link> */}
-        <button onClick={()=> setLoginModalIsOpen(true)}>Login</button>
-        <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen} submit={submit} setUserID={setUserID}/>
-        
-        <button onClick={()=> setSignUpModalIsOpen(true)}>Sign Up</button>
-        <SignUpModal modalIsOpen={ signUpModalIsOpen } setModalIsOpen={ setSignUpModalIsOpen }/>
+            <Link to="/user"><button>Ex Login In</button></Link>
+            <button onClick={()=> setLoginModalIsOpen(true)}>Login In</button>
+            <LoginModal modalIsOpen={ loginModalIsOpen } setModalIsOpen={ setLoginModalIsOpen} submit={submit} setUserID={setUserID}/>
+            
+            <button onClick={()=> setSignUpModalIsOpen(true)}>Sign Up</button>
+            <SignUpModal modalIsOpen={ signUpModalIsOpen } setModalIsOpen={ setSignUpModalIsOpen }/>
 
-            {/* <Link to="/user"><button>Sing Up</button></Link> */}
         </StyledNav>
     )
 }

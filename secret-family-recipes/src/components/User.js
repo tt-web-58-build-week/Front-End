@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Recipe from "./Recipe";
 import { Link } from "react-router-dom";
+import RecipeModal from './RecipeModal'
 
 
 const StyledProfile = styled.nav`
@@ -10,7 +11,9 @@ const StyledProfile = styled.nav`
     align-items:center;
     justify-content:space-evenly;
     margin:1.5rem 1rem 1rem 2rem;
-
+    a{
+        text-decoration: none;
+    }
     .userImg {
         background-image: url("https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
         background-position: center;
@@ -27,12 +30,16 @@ const StyledProfile = styled.nav`
         align-items: center;
     }
 
-    button{
+    .logOut, .addRecipe{
+        display:flex;
+        align-items:center;
+        justify-content:center;
         border:solid 2px silver;
-        text-align:center;
         border-radius:10px;
         font-size:1.5rem;
         width:45%;
+        background-color: #999b84;
+        color:#f4eee8;
     }
     
     .btns{
@@ -62,16 +69,36 @@ const RecipesDiv = styled.section`
     text-align:center;
     h2{
         width:100%;
+        font-size:2rem;
+    }
+    form{
+        width:100%;
     }
     input{
         margin-top:1rem;
-        margin-bottom:1rem;
+        margin-bottom:3rem;
         width:75%;
     }
 `
 const User = (props)=>{
     // {/* SPLIT INTO COMPONENTS!!! */}
-    const { data } = props;
+    const [searchValue, setSearchValue] = useState("");
+
+    const [recipeDisplayModalIsOpen, setRecipeDisplayModalIsOpen] = useState(false)
+    const initialStateValues = {title: '', source: '', ingredients: [], instructions: [], category:[]}
+    const [formValues, setFormValues] = useState(initialStateValues)
+
+    const updateSearchValue = (evt)=>{
+        const {value} = evt.target;
+        setSearchValue(value);
+    }
+    const search = (evt)=>{
+        evt.preventDefault();
+        console.log(`Looking for ${searchValue}`);
+        setSearchValue("");
+    }
+    
+    const { data, deleteRecipe, recipeModalIsOpen, setRecipeModalIsOpen } = props;
     return(
         <div>
             <StyledProfile>
@@ -80,17 +107,22 @@ const User = (props)=>{
                     <h1>Jason</h1>
                 </div>
                 <div className="btns">
-                    <Link to="/"><button className="addBtn">Log Out</button></Link>
-                    <button className="logOut">Add Recipe</button>
+                    <Link to="/" className="logOut">Log Out</Link>
+                    <button className="addRecipe" onClick={()=> setRecipeModalIsOpen(true)}>Add Recipe</button>
+                    <RecipeModal modalIsOpen={ recipeModalIsOpen } setModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
                 </div>
             </StyledProfile>
             {/* Make conditional (&&) */}
             <RecipesDiv>
                 <h2>Recipes</h2>
-                <input placeholder="Search"/>
+                <form onSubmit={search}>
+                    <input className="search" type="text" value={searchValue} onChange={updateSearchValue} name="keywords"/> 
+                    <button>Search</button>
+                </form>
                 { 
                     data.map(recipe=>{
-                    return <Recipe key={recipe.recipeid} recipe={recipe}/>
+                    return <Recipe key={recipe.recipeid} recipe={recipe} deleteRecipe={deleteRecipe}
+                    recipeDisplayModalIsOpen={ recipeDisplayModalIsOpen } setRecipeDisplayModalIsOpen={ setRecipeDisplayModalIsOpen } recipeModalIsOpen={ recipeModalIsOpen } setRecipeModalIsOpen={ setRecipeModalIsOpen } formValues={formValues} setFormValues={setFormValues} initialStateValues={initialStateValues}/>
                   })
                 }
             </RecipesDiv>
