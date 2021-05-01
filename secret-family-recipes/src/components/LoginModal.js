@@ -73,7 +73,7 @@ const schema = yup.object().shape({
 
 
 export default function LoginModal(props) {
-    const {modalIsOpen, setModalIsOpen, submitL, setUserID } = props
+    const {modalIsOpen, setModalIsOpen, submitL: submit, setUserID } = props
     const [values, setValues] = useState(INITIAL_FORM_VALUES);
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
@@ -85,7 +85,7 @@ export default function LoginModal(props) {
         console.log(values)
         schema.validate(values)
         .then(_ => {
-        submitL(values, push, setUserID);
+        submit(values, push, setUserID);
         setModalIsOpen(false)
         setValues(INITIAL_FORM_VALUES);
         setErrors(INITIAL_FORM_ERRORS) 
