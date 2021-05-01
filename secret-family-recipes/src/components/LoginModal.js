@@ -174,7 +174,6 @@ export default function LoginModal(props) {
                 <button variant={disabled ? 'disabled' : 'success'}>LOGIN</button>
                 <button className="cancelButton" onClick={()=> setModalIsOpen(false)}>CANCEL</button>
             </StyledForm>
-            {/* <button id="do-it-button" onClick={doIt}>console log the users api</button> */}
         </Modal>
     )
 }

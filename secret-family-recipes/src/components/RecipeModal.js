@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal'
 import IngredientList from './IngredientList'
 import InstructionList from './InstructionList'
@@ -29,8 +29,8 @@ export default function RecipeModal(props) {
     const {modalIsOpen, setModalIsOpen, submit} = props
     const [formValues, setFormValues] = useState({INITIAL_FORM_VALUES})
     const [errors, setErrors] = useState({INITIAL_FORM_ERRORS})
-    const [ingredients, setIngredients] = useState([])
-    const [instructions, setInstructions] = useState([])
+    const [ingredients, /*setIngredients*/] = useState([])
+    const [instructions, /*setInstructions*/] = useState([])
 
     const onChange = event => {
         const {name, value } = event.target
@@ -116,7 +116,7 @@ export default function RecipeModal(props) {
                         name="title"
                         type="text"
                         onChange={onChange}
-                        value={formValues.title}
+                        // value={formValues.title}
                     />
                 </div>
                 <div>
@@ -128,7 +128,7 @@ export default function RecipeModal(props) {
                         name="source"
                         type="text"
                         onChange={onChange}
-                        value={formValues.source}
+                        // value={formValues.source}
                     />
                 </div>
 
@@ -166,7 +166,7 @@ export default function RecipeModal(props) {
                         error={errors.category}
                         name="category"
                         type="text"
-                        value={formValues.category}
+                        // value={formValues.category}
                         onChange={onChange}>
                             <option value="" disabled></option>
                             <option value="Mexican">Mexican</option>
