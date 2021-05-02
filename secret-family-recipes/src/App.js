@@ -4,21 +4,20 @@ import { Route, Switch } from "react-router-dom";
 import User from "./components/User";
 import Home from "./components/Home";
 import { MOCK_DATA as data} from './mockData/mockData';
-import {loginRequest} from './utils/requests';
-import Modal from 'react-modal';
-import axios from "axios";
+import {signUpRequest, loginRequest, recipeSubmitRequest} from './utils/requests';
+import Modal from 'react-modal'
 
 Modal.setAppElement('#root')
 
 function App() {
  
-  const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false);
+  // const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false);
 
-  const [recipeToDelete, setRecipeToDelete] = useState(null);
+  // const [recipeToDelete, setRecipeToDelete] = useState(null);
 
-  const deleteRecipe = (id)=>{
-    console.log(`Recipe with id ${id} is removed from the user's profile page`);
-  }
+  // const deleteRecipe = (id)=>{
+  //   console.log(`Recipe with id ${id} is removed from the user's profile page`);
+  // }
 
   const storedUserID = localStorage.getItem('userID');
   const [userID, setUserID] = useState(storedUserID ? storedUserID : null);
@@ -30,15 +29,12 @@ function App() {
       <Route 
         path="/user" 
         render={props => (
-          <User {...props} data={data}
-          deleteRecipe={deleteRecipe} 
-          recipeModalIsOpen={recipeModalIsOpen}
-          setRecipeModalIsOpen={setRecipeModalIsOpen}/>
+          <User {...props} submit={recipeSubmitRequest} data={data}/>
           )}
       />
       <Route path="/about" component={About}/>
       <Route exact path="/">
-        <Home submit={loginRequest} setUserID={setUserID}/>
+        <Home submitS={signUpRequest} submitL ={loginRequest} setUserID={setUserID}/>
       </Route>
 
     </Switch>

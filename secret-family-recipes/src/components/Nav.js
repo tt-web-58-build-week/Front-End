@@ -12,28 +12,28 @@ const StyledNav = styled.nav`
     padding: 3rem;
     display: flex;
     justify-content: flex-end;
-    align-items:center;
+     align-items:center;
     height: 10vh;
 
     @media (max-width: 768px) {
-        height: 50vh;
-        flex-direction: column;
-        align-items: center;
-      }
+      height: 50vh;
+      flex-direction: column;
+      align-items: center;
+    }
 
     button {
-    color: ${pr => pr.theme.lightGray};
-    letter-spacing: 1px;
-    height: 50px;
-    width: 150px;
-    margin: 10px 20px;
-    border-radius: 0;
-    background-color: ${pr => pr.theme.darkGray};
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    outline: inherit;
-    transition: all .5s ease-out;
+      color: ${pr => pr.theme.lightGray};
+      letter-spacing: 1px;
+      height: 50px;
+      width: 150px;
+      margin: 10px 20px;
+      border-radius: 0;
+      background-color: ${pr => pr.theme.darkGray};
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      outline: inherit;
+      transition: all .5s ease-out;
 
     &:hover {
         background-color: ${pr => pr.theme.lightGray};
@@ -41,6 +41,7 @@ const StyledNav = styled.nav`
         color: ${pr => pr.theme.gray};
         transition: all .1s ease-in;
     }
+  }
 `
 
 const Nav = (props)=>{

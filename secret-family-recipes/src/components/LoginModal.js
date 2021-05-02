@@ -73,17 +73,12 @@ const schema = yup.object().shape({
 
 
 export default function LoginModal(props) {
-    const {modalIsOpen, setModalIsOpen, submit, setUserID } = props
+    const {modalIsOpen, setModalIsOpen, submitL: submit, setUserID } = props
     const [values, setValues] = useState(INITIAL_FORM_VALUES);
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
     const { push } = useHistory();
 
-
-
-
-
-    // const apiURL = "https://tt-web58-recipe-app.herokuapp.com/api/"
 
     const onSubmit = event => {
         event.preventDefault()
@@ -179,7 +174,6 @@ export default function LoginModal(props) {
                 <button variant={disabled ? 'disabled' : 'success'}>LOGIN</button>
                 <button className="cancelButton" onClick={()=> setModalIsOpen(false)}>CANCEL</button>
             </StyledForm>
-            {/* <button id="do-it-button" onClick={doIt}>console log the users api</button> */}
         </Modal>
     )
 }

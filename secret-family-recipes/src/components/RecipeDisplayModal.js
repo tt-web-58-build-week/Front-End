@@ -1,9 +1,9 @@
-import React,{useEffect, useState} from 'react';
+import React from 'react';
 import Modal from 'react-modal'
-import IngredientList from './IngredientList'
-import InstructionList from './InstructionList'
-import _uniqueID from 'lodash/uniqueId'
-import { object } from 'yup';
+// import IngredientList from './IngredientList'
+// import InstructionList from './InstructionList'
+// import _uniqueID from 'lodash/uniqueId'
+// import { object } from 'yup';
 
 export default function RecipeDisplayModal({recipeDisplayModalIsOpen, setRecipeDisplayModalIsOpen, recipeModalIsOpen, setRecipeModalIsOpen, formValues, setFormValues}) {
     const dummyData = {

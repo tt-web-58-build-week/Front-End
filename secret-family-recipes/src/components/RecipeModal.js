@@ -1,66 +1,53 @@
-import React,{useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal'
 import IngredientList from './IngredientList'
 import InstructionList from './InstructionList'
 import _uniqueID from 'lodash/uniqueId'
-import { object } from 'yup';
+import * as yup from 'yup';
 
-export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, setFormValues, initialStateValues}) {
 
-    const [textValue, setTextValue] = useState({})
-    
+const INITIAL_FORM_VALUES = {
+    title: '',
+    source: '',
+    category: ''
+} 
 
-    const ingredientInput = document.querySelector('#ingredient-input')
-    function enterButtonCheckIngredients(event) {
-        if(document.activeElement === ingredientInput) {
-            if(event.key === 'Enter') {
-                event.preventDefault()
-                console.log(document.activeElement)
-                document.querySelector('#add-ingredient-button').click()
-            }
-        }
-    }
+const INITIAL_FORM_ERRORS = {
+    title: '',
+    source: '',
+    category: ''
+}
 
-    function enterButtonCheckInstructions(event) {
-        if(event.key === 'Enter') {
-            event.preventDefault()
-            document.querySelector('#add-instruction-button').click()
-        }
-    }
 
-    const changeText = event => {
-        const {name, value} = event.target
-        setTextValue({...textValue, [name]: value})
-     }
+const schema = yup.object().shape({
+    title: yup.string().required('required'),
+    source: yup.string().required('required'),
+    category: yup.string().required('required')
+})
+
+export default function RecipeModal(props) {
+    const {modalIsOpen, setModalIsOpen, submit} = props
+    const [formValues, setFormValues] = useState({INITIAL_FORM_VALUES})
+    const [errors, setErrors] = useState({INITIAL_FORM_ERRORS})
+    const [ingredients, /*setIngredients*/] = useState([])
+    const [instructions, /*setInstructions*/] = useState([])
 
     const onChange = event => {
         const {name, value } = event.target
-        setFormValues({...formValues, [name]: value})
-        console.log(formValues)
+        setFormValues({
+            ...formValues, [name]: value
+        })
+        console.log(event.target)
+        
     }
 
-    const onSubmit = event => {
-        event.preventDefault();
-        let form_data = new FormData();
-        for ( let key in formValues ) {
-            form_data.append(key, formValues[key]);
-            // console.log(formValues)
-            // console.log(key)
-            // console.log(formValues[key])
-        }
-        console.log(formValues)
-        document.querySelectorAll('input').innerText = ''
-        setFormValues(initialStateValues)
-        closeModal()
-    }
+   
 
     const addIngredient = event => {
         event.preventDefault();
         if(formValues.ingredient !== '' && formValues.ingredient !== undefined) {
             formValues.ingredients = [...formValues.ingredients, {ingredientName: formValues.ingredient, ingredientId: _uniqueID('prefix-')}]
         }
-        document.querySelector('#ingredient-input').value = ''
-        setTextValue({...textValue, ingredient: ''})
     }
 
     const addInstruction = event => {
@@ -69,8 +56,6 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
             formValues.instructions = [...formValues.instructions, {instructionName: formValues.instruction, instructionId: _uniqueID('prefix-')}]
 
         }
-        document.querySelector('#instruction-input').value = ''
-        setTextValue({...textValue, instruction: ''})
     }
 
     const closeModal = () => {
@@ -78,6 +63,21 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
         console.log('eeeeeeeee')
         setFormValues({title: '', source: '', ingredients: [], instructions: [], category:[]})
 
+    }
+
+
+    const onSubmit = event => {
+        event.preventDefault();
+        schema.validate(formValues)
+        .then(_ => {
+        submit(formValues, ingredients, instructions)
+        setModalIsOpen(false)
+        setFormValues(INITIAL_FORM_VALUES);
+        setErrors(INITIAL_FORM_ERRORS);
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     return (
@@ -110,21 +110,25 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
                 <div>
                     <label>Title: </label>
                     <input
-                        placeholder='Chocolate Chip Cookies...' 
+                        placeholder='Chocolate Chip Cookies...'
+                        value={formValues.title}
+                        error={errors.category}
                         name="title"
                         type="text"
                         onChange={onChange}
-                        value={formValues.title}
+                        // value={formValues.title}
                     />
                 </div>
                 <div>
                     <label>Source: </label>
                     <input 
                         placeholder='Grandma Carolyn...'
+                        value={formValues.source}
+                        error={errors.category}
                         name="source"
                         type="text"
                         onChange={onChange}
-                        value={formValues.source}
+                        // value={formValues.source}
                     />
                 </div>
 
@@ -132,11 +136,10 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
                     <label>Ingredient: </label>
                     <input
                         placeholder='1 cup of sugar...'
-                        id="ingredient-input" 
+                        id="ingredient-input"
                         name="ingredient"
                         type="text"
                         onChange={onChange}
-                        onKeyPress={enterButtonCheckIngredients}
                     />
                     <button onClick={addIngredient} id="add-ingredient-button">Add</button>
                     <IngredientList formValues={formValues} setFormValues={setFormValues}/>
@@ -150,7 +153,6 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
                         name="instruction"
                         type="text"
                         onChange={onChange}
-                        onKeyPress={enterButtonCheckInstructions}
                     />
                     <button onClick={addInstruction} id="add-instruction-button">Add</button>
                     <InstructionList formValues={formValues} setFormValues={setFormValues}/>
@@ -160,9 +162,11 @@ export default function RecipeModal({modalIsOpen, setModalIsOpen, formValues, se
                     <label>Category: </label>
                     <select 
                         placeholder='Dessert...' 
+                        value={formValues.category}
+                        error={errors.category}
                         name="category"
                         type="text"
-                        value={formValues.category}
+                        // value={formValues.category}
                         onChange={onChange}>
                             <option value="" disabled></option>
                             <option value="Mexican">Mexican</option>

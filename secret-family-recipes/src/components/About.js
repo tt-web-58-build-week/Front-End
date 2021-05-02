@@ -49,6 +49,7 @@ const StyledAbout = styled.section`
         color: ${pr => pr.theme.gray};
         transition: all .1s ease-in;
     }
+  }
 `
 
 const About = (prop)=>{
