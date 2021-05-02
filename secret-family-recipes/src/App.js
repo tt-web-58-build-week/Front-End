@@ -5,7 +5,7 @@ import User from "./components/User";
 import Home from "./components/Home";
 import { MOCK_DATA as data} from './mockData/mockData';
 import {signUpRequest, loginRequest, recipeSubmitRequest} from './utils/requests';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
 
 Modal.setAppElement('#root')
 
