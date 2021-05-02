@@ -1,5 +1,4 @@
 # Front-End
-
 Secret Family Recipes
 
 The front end to the application, used to store family recipes, built with React, JavaScript, and CSS.
